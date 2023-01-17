@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/navigation_graph"
+    app:startDestination="@id/listOfPokemonsFragment">
+
+    <fragment
+        android:id="@+id/listOfPokemonsFragment"
+        android:name="com.example.appinfoofpokemons.view.ListOfPokemonsFragment"
+        android:label="fragment_list_of_pokemons"
+        tools:layout="@layout/fragment_list_of_pokemons" />
+</navigation>
