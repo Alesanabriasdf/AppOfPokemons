@@ -11,7 +11,7 @@
         android:layout_height="wrap_content"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        android:id="@+id/rvForAllIngredients"
+        android:id="@+id/rvForAllPokemons"
         android:orientation="vertical"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

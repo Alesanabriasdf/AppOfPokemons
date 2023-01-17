@@ -4,9 +4,9 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.appinfoofpokemons.R
-import com.example.appinfoofpokemons.model.Pokemon
+import com.example.appinfoofpokemons.model.PokemonRaw
 
-class PokemonsAdapter (private val list: List<Pokemon>): RecyclerView.Adapter<PokemonsHolder>() {
+class PokemonsAdapter (private val list: List<PokemonRaw>): RecyclerView.Adapter<PokemonsHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PokemonsHolder {
 

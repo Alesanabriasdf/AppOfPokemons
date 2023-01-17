@@ -3,20 +3,16 @@ package com.example.appinfoofpokemons.view
 import android.view.View
 import androidx.recyclerview.widget.RecyclerView
 import com.example.appinfoofpokemons.databinding.ViewForEachPokemonBinding
-import com.example.appinfoofpokemons.model.Pokemon
+import com.example.appinfoofpokemons.model.PokemonRaw
 
 class PokemonsHolder (view: View): RecyclerView.ViewHolder(view) {
 
     private val binding = ViewForEachPokemonBinding.bind(view)
 
-    fun paintIt(pokemon: Pokemon) {
+    fun paintIt(pokemon: PokemonRaw) {
 
         with(binding) {
-            textViewType.text = "Type: ${pokemon.type}"
-            textViewEvolution.text = "Evolution: ${pokemon.evolution}"
-            textViewAttack.text = "Attack: ${pokemon.attack}"
-            textViewSkill.text= "Skill: ${pokemon.skill}"
-            textViewPlace.text = "Place: ${pokemon.place}"
+            textViewType.text = "Name: ${pokemon.pokemonName}"
         }
     }
 }
