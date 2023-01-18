@@ -5,6 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.appinfoofpokemons.GetAllPokemons
+import com.example.appinfoofpokemons.model.PokemonDetail
 import com.example.appinfoofpokemons.model.PokemonRaw
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
@@ -18,6 +19,9 @@ class ViewModelPokemon @Inject constructor(private val getAllPokemons: GetAllPok
 
     private val _loading = MutableLiveData<Boolean>()
     val loading: LiveData<Boolean> = _loading
+
+    private val _pokemonDetail = MutableLiveData<PokemonDetail>()
+    val pokemonDetail: LiveData<PokemonDetail> = _pokemonDetail
 
     private val _showError = MutableLiveData<Boolean>()
     val showError: LiveData<Boolean> = _showError
@@ -35,4 +39,19 @@ class ViewModelPokemon @Inject constructor(private val getAllPokemons: GetAllPok
             }
         }
     }
+
+    fun getDetailsOfPokemon(id: String){
+        viewModelScope.launch{
+            _loading.postValue(true)
+            try {
+                _pokemonDetail.postValue(getAllPokemons.getDetailOfPokemon(id))
+                _loading.postValue(false)
+                //retirar loading
+            } catch (e: Exception){
+                _showError.postValue(true)
+                //mostrar alguna pantalla de error
+            }
+        }
+    }
+
 }

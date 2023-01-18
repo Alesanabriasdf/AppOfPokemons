@@ -2,7 +2,8 @@ package com.example.appinfoofpokemons.model
 
 import com.google.gson.annotations.SerializedName
 
-data class GlobalDto(
+data class Types(
 
-    @SerializedName("results") val listOfPokemons : List<PokemonRaw>
+    @SerializedName("type") val pokemonType : Type
+
 )

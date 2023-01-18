@@ -16,8 +16,6 @@ class ListOfPokemonsFragment : Fragment(R.layout.fragment_list_of_pokemons) {
 
     private lateinit var binding: FragmentListOfPokemonsBinding
 
-    private lateinit var adapter: PokemonsAdapter
-
     private val viewModelPokemon: ViewModelPokemon by activityViewModels()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
