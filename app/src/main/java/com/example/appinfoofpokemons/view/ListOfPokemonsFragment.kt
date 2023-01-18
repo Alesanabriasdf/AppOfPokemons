@@ -2,10 +2,12 @@ package com.example.appinfoofpokemons.view
 
 import android.os.Bundle
 import android.view.View
+import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import com.example.appinfoofpokemons.R
 import com.example.appinfoofpokemons.databinding.FragmentListOfPokemonsBinding
+import com.example.appinfoofpokemons.model.PokemonRaw
 import com.example.appinfoofpokemons.viewmodel.ViewModelPokemon
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -13,6 +15,8 @@ import dagger.hilt.android.AndroidEntryPoint
 class ListOfPokemonsFragment : Fragment(R.layout.fragment_list_of_pokemons) {
 
     private lateinit var binding: FragmentListOfPokemonsBinding
+
+    private lateinit var adapter: PokemonsAdapter
 
     private val viewModelPokemon: ViewModelPokemon by activityViewModels()
 
@@ -23,11 +27,38 @@ class ListOfPokemonsFragment : Fragment(R.layout.fragment_list_of_pokemons) {
 
         viewModelPokemon.getListOfPokemons()
 
+        filterListByName()
+
+        setList()
+
+    }
+
+    private fun setList() {
         viewModelPokemon.listOfPokemons.observe(viewLifecycleOwner){
             if (!it.isNullOrEmpty()){
                 binding.rvForAllPokemons.adapter = PokemonsAdapter(it)
             }
         }
     }
+
+    private fun filterListByName(){
+        binding.editTextSearch.addTextChangedListener { name ->
+
+            val newList = mutableListOf<PokemonRaw>()
+            viewModelPokemon.listOfPokemons.observe(viewLifecycleOwner){ listOfAllPokemons ->
+
+                if (!name.isNullOrEmpty()){
+                    listOfAllPokemons.forEach {
+
+                        if (it.pokemonName.lowercase().contains(name.toString().lowercase())){
+                            newList.add(it)
+                        }
+                        binding.rvForAllPokemons.adapter = PokemonsAdapter(newList)
+                    }
+                }
+            }
+        }
+    }
+
 
 }

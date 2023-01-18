@@ -5,7 +5,7 @@ import javax.inject.Inject
 
 class GetAllPokemons @Inject constructor(private val repository: PokemonsRepository) {
 
-    suspend fun invoke(): List<PokemonRaw>{
+    suspend fun getFromRepository(): List<PokemonRaw>{
         return  repository.getAllPokemons()
     }
 

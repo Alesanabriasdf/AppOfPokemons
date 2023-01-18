@@ -19,19 +19,20 @@ class ViewModelPokemon @Inject constructor(private val getAllPokemons: GetAllPok
     private val _loading = MutableLiveData<Boolean>()
     val loading: LiveData<Boolean> = _loading
 
+    private val _showError = MutableLiveData<Boolean>()
+    val showError: LiveData<Boolean> = _showError
+
     fun getListOfPokemons(){
         viewModelScope.launch{
             _loading.postValue(true)
             try {
-                _listOfPokemons.postValue(getAllPokemons.invoke())
+                _listOfPokemons.postValue(getAllPokemons.getFromRepository())
+                _loading.postValue(false)
+                //retirar loading
             } catch (e: Exception){
-
+                _showError.postValue(true)
+                //mostrar alguna pantalla de error
             }
         }
     }
-
-
-
-
-
 }

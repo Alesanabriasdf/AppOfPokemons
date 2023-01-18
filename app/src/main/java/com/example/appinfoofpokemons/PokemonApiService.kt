@@ -1,6 +1,7 @@
 package com.example.appinfoofpokemons
 
 import com.example.appinfoofpokemons.model.GlobalDto
+import com.example.appinfoofpokemons.model.PokemonRaw
 import com.example.appinfoofpokemons.service.PokemonService
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
@@ -9,11 +10,11 @@ import javax.inject.Inject
 
 class PokemonApiService @Inject constructor(private val api: PokemonService){
 
-    suspend fun getPokemons(): GlobalDto{
+    suspend fun getPokemons(): List<PokemonRaw>{
         return withContext(Dispatchers.IO){
             val call:Response<GlobalDto> = api.getPokemonList()
 
-            call.body()!!
+            call.body()?.listOfPokemons!!
         }
     }
 }
