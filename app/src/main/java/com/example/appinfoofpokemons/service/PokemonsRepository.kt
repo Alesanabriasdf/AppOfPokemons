@@ -1,10 +1,11 @@
-package com.example.appinfoofpokemons
+package com.example.appinfoofpokemons.service
 
-import com.example.appinfoofpokemons.database.PokemonDao
+import com.example.appinfoofpokemons.domain.PokemonApiService
 import com.example.appinfoofpokemons.model.PokemonDetail
 import com.example.appinfoofpokemons.model.PokemonRaw
 import com.example.appinfoofpokemons.model.changeToPokemonEntity
 import com.example.appinfoofpokemons.model.changeToPokemonRaw
+import com.example.appinfoofpokemons.model.database.PokemonDao
 import javax.inject.Inject
 
 class PokemonsRepository @Inject constructor(private val api: PokemonApiService, private val pokemonDao: PokemonDao){
@@ -20,7 +21,7 @@ class PokemonsRepository @Inject constructor(private val api: PokemonApiService,
         }
     }
 
-    suspend fun getDetailsOfPokemon(id:String): PokemonDetail{
+    suspend fun getDetailsOfPokemon(id:String): PokemonDetail {
         return api.getDetailOfPokemon(id)
     }
 

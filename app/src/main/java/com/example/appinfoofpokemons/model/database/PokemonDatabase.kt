@@ -1,4 +1,4 @@
-package com.example.appinfoofpokemons.database
+package com.example.appinfoofpokemons.model.database
 
 import androidx.room.Database
 import androidx.room.RoomDatabase

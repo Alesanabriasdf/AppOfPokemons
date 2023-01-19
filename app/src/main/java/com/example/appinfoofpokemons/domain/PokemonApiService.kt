@@ -1,4 +1,4 @@
-package com.example.appinfoofpokemons
+package com.example.appinfoofpokemons.domain
 
 import com.example.appinfoofpokemons.model.*
 import com.example.appinfoofpokemons.service.PokemonService

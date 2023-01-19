@@ -1,6 +1,6 @@
 package com.example.appinfoofpokemons.model
 
-import com.example.appinfoofpokemons.database.PokemonListEntity
+import com.example.appinfoofpokemons.model.database.PokemonListEntity
 import com.google.gson.annotations.SerializedName
 
 data class PokemonRaw(

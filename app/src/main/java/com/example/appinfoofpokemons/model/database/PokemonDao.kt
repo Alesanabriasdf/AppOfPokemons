@@ -1,4 +1,4 @@
-package com.example.appinfoofpokemons.database
+package com.example.appinfoofpokemons.model.database
 
 import androidx.room.Dao
 import androidx.room.Insert

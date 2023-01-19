@@ -1,9 +1,10 @@
-package com.example.appinfoofpokemons
+package com.example.appinfoofpokemons.view
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
+import com.example.appinfoofpokemons.R
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
