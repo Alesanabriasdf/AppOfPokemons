@@ -14,4 +14,8 @@ class GetAllPokemons @Inject constructor(private val repository: PokemonsReposit
         return repository.getDetailsOfPokemon(id)
     }
 
+    suspend fun getPlacesOfThisPokemon(id:String): String{
+        return repository.getPlacesOfThisPokemon(id)
+    }
+
 }

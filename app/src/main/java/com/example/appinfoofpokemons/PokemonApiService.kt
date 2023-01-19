@@ -1,9 +1,6 @@
 package com.example.appinfoofpokemons
 
-import com.example.appinfoofpokemons.model.GlobalDto
-import com.example.appinfoofpokemons.model.PokemonDetail
-import com.example.appinfoofpokemons.model.PokemonDetailDto
-import com.example.appinfoofpokemons.model.PokemonRaw
+import com.example.appinfoofpokemons.model.*
 import com.example.appinfoofpokemons.service.PokemonService
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
@@ -54,6 +51,22 @@ class PokemonApiService @Inject constructor(private val api: PokemonService){
             val pokemonDetail = PokemonDetail( types,evolutions,attacks,abilities)
 
             pokemonDetail
+        }
+    }
+
+    suspend fun getPlacesOfThisPokemon(id:String):String{
+        return withContext(Dispatchers.IO){
+            val call:Response<List<GlobalPlacesDto>> = api.getPlacesOfThisPokemon("pokemon/$id/encounters")
+
+            var places = ""
+
+            call.body()?.forEach {
+                if (it.locationArea.locationArea.isNotBlank()){
+                    places += "${it.locationArea.locationArea}, "
+                }
+            }
+
+            places
         }
     }
 }

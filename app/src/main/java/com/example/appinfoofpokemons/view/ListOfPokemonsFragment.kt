@@ -53,10 +53,10 @@ class ListOfPokemonsFragment : Fragment(R.layout.fragment_list_of_pokemons) {
                         }
                         binding.rvForAllPokemons.adapter = PokemonsAdapter(newList)
                     }
+                } else {
+                    binding.rvForAllPokemons.adapter= PokemonsAdapter(listOfAllPokemons)
                 }
             }
         }
     }
-
-
 }

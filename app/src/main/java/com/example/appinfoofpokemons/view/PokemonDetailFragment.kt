@@ -1,7 +1,9 @@
 package com.example.appinfoofpokemons.view
 
 import android.os.Bundle
+import android.view.MenuItem
 import android.view.View
+import android.widget.PopupMenu
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import com.example.appinfoofpokemons.R
@@ -10,7 +12,8 @@ import com.example.appinfoofpokemons.viewmodel.ViewModelPokemon
 import com.squareup.picasso.Picasso
 
 
-class PokemonDetailFragment : Fragment(R.layout.fragment_pokemon_detail) {
+class PokemonDetailFragment: Fragment(R.layout.fragment_pokemon_detail),
+    PopupMenu.OnMenuItemClickListener {
 
     private lateinit var binding: FragmentPokemonDetailBinding
 
@@ -23,6 +26,17 @@ class PokemonDetailFragment : Fragment(R.layout.fragment_pokemon_detail) {
 
         setupUI()
 
+        setPopUpMenu()
+
+    }
+
+    private fun setPopUpMenu() {
+        binding.imageViewPokemon.setOnClickListener {
+            val menu = PopupMenu(requireContext(),binding.imageViewPokemon)
+            menu.setOnMenuItemClickListener(this)
+            menu.menuInflater.inflate(R.menu.menu_pop_up, menu.menu)
+            menu.show()
+        }
     }
 
     private fun setupUI() {
@@ -42,5 +56,22 @@ class PokemonDetailFragment : Fragment(R.layout.fragment_pokemon_detail) {
                 //textViewPlaces
             }
         }
+    }
+
+    override fun onMenuItemClick(p0: MenuItem): Boolean {
+
+        val id = arguments?.getString("id")
+
+        when(p0.itemId){
+            R.id.findIt ->{
+                BottomSheetPlacesFragment().show(childFragmentManager,"show bottom sheet")
+                viewModelPokemon.getPlacesPokemon(id!!)
+                return true
+            }
+            R.id.close ->{
+                return false
+            }
+        }
+        return false
     }
 }

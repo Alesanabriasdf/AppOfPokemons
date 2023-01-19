@@ -17,6 +17,9 @@ class ViewModelPokemon @Inject constructor(private val getAllPokemons: GetAllPok
     private val _listOfPokemons = MutableLiveData<List<PokemonRaw>>()
     val listOfPokemons: LiveData<List<PokemonRaw>> = _listOfPokemons
 
+    private val _pokemonPlaces = MutableLiveData<String>()
+    val pokemonPlaces: LiveData<String> = _pokemonPlaces
+
     private val _loading = MutableLiveData<Boolean>()
     val loading: LiveData<Boolean> = _loading
 
@@ -45,6 +48,20 @@ class ViewModelPokemon @Inject constructor(private val getAllPokemons: GetAllPok
             _loading.postValue(true)
             try {
                 _pokemonDetail.postValue(getAllPokemons.getDetailOfPokemon(id))
+                _loading.postValue(false)
+                //retirar loading
+            } catch (e: Exception){
+                _showError.postValue(true)
+                //mostrar alguna pantalla de error
+            }
+        }
+    }
+
+    fun getPlacesPokemon(id:String){
+        viewModelScope.launch{
+            _loading.postValue(true)
+            try {
+                _pokemonPlaces.postValue(getAllPokemons.getPlacesOfThisPokemon(id))
                 _loading.postValue(false)
                 //retirar loading
             } catch (e: Exception){
