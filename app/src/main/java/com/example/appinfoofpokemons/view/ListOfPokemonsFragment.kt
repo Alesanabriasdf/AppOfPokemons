@@ -52,8 +52,14 @@ class ListOfPokemonsFragment : Fragment(R.layout.fragment_list_of_pokemons) {
                             newList.add(it)
                         }
                         binding.rvForAllPokemons.adapter = PokemonsAdapter(newList)
+                        if (newList.isEmpty()){
+                            binding.tvNoInfo.text="No encontramos pokemons con ese nombre..."
+                        } else {
+                            binding.tvNoInfo.text=""
+                        }
                     }
                 } else {
+                    binding.tvNoInfo.text=""
                     binding.rvForAllPokemons.adapter= PokemonsAdapter(listOfAllPokemons)
                 }
             }
